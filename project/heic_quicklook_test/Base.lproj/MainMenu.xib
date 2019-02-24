@@ -15,6 +15,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="iview" destination="Q4V-vL-CPm" id="cfL-Zl-5jx"/>
                 <outlet property="label" destination="AGM-0C-yHF" id="TFf-9u-Kgc"/>
                 <outlet property="view" destination="ebQ-Pv-qms" id="7gG-je-32I"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -701,10 +702,15 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebQ-Pv-qms" customClass="ImageView">
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebQ-Pv-qms">
                         <rect key="frame" x="0.0" y="22" width="724" height="473"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </customView>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q4V-vL-CPm">
+                        <rect key="frame" x="0.0" y="22" width="724" height="473"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="gjv-Za-txq"/>
+                    </imageView>
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>

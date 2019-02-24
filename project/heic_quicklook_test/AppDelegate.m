@@ -16,6 +16,7 @@
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *label;
 @property (weak) IBOutlet ImageView *view;
+@property (weak) IBOutlet NSImageView *iview;
 
 @property (strong) oHEIF *heicFile;
 
@@ -78,8 +79,9 @@
 	   if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
 	   {
 		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
-		   [self.view setCgImage:self.heicFile.cgImage];
-		   [self.view setNeedsDisplay:YES];
+		   //[self.view setCgImage:self.heicFile.cgImage];
+		   //[self.view setNeedsDisplay:YES];
+		   self.iview.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];
 	   }
 	   else {
 		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];

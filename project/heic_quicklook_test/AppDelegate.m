@@ -78,8 +78,7 @@
 	   if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
 	   {
 		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
-		   //self.view.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];
-		   self.view.cgImage = self.heicFile.cgImage;
+		   [self.view setCgImage:self.heicFile.cgImage];
 		   [self.view setNeedsDisplay:YES];
 	   }
 	   else {

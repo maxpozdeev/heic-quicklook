@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ImageView : NSView
 
-@property  CGImageRef cgImage;
+- (void)setCgImage:(CGImageRef)cgImage;
 
 @end
 

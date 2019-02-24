@@ -8,11 +8,16 @@
 
 #import "AppDelegate.h"
 #import "oHEIF.h"
+#import "ImageView.h"
 
 @interface AppDelegate ()
 
+
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *label;
+@property (weak) IBOutlet ImageView *view;
+
+@property (strong) oHEIF *heicFile;
 
 @end
 
@@ -38,23 +43,50 @@
 	openPanel.canChooseDirectories = NO;
 	openPanel.allowsMultipleSelection = NO;
 	
-	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){
+	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result)
+	{
 		if(result == NSFileHandlingPanelOKButton)
 		{
-			NSString *fileExt = openPanel.URL.pathExtension.lowercaseString;
-			
-			if (![fileExt isEqualToString:@"heic"] )
-			{
-				self.label.stringValue = [NSString stringWithFormat:@"%@: not a HEIC file", openPanel.URL.lastPathComponent];
-				return;
-			}
-
-			//do work here
-			NSString *sSize = [oHEIF stringSizeOfImageAtPath:openPanel.URL.path];
-			
-			self.label.stringValue = [NSString stringWithFormat:@"%@ image size: %@", openPanel.URL.lastPathComponent, sSize];
+			[self doOpenFile:openPanel.URL.path];
 		}
 	}];
+}
+
+
+- (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames;
+{
+	if (filenames && filenames.count > 0)
+		[self doOpenFile:[filenames objectAtIndex:0]];
+}
+
+
+-(void)doOpenFile:(NSString*)filename
+{
+	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+	[self.window setTitleWithRepresentedFilename:filename];
+	
+	NSString *fileExt = filename.pathExtension.lowercaseString;
+	if (![fileExt isEqualToString:@"heic"] )
+	{
+		self.label.stringValue = [NSString stringWithFormat:@"%@ | Not a HEIC file", filename.lastPathComponent];
+		return;
+	}
+	
+	dispatch_async(dispatch_get_main_queue(), ^
+   {
+	   self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
+	   if ([self.heicFile decodeFirstImage])
+	   {
+		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+		   //self.view.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];
+		   self.view.cgImage = self.heicFile.cgImage;
+		   [self.view setNeedsDisplay:YES];
+	   }
+	   else {
+		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+	   }
+	   
+   });
 }
 
 

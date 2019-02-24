@@ -12,10 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface oHEIF : NSObject
 
+@property (strong, readonly) NSString *path;
+@property (readonly) size_t width;
+@property (readonly) size_t height;
+@property (readonly) CGImageRef cgImage;
+
+-(instancetype)initWithFileAtPath:(NSString*)path;
+-(BOOL)decodeFirstImage;
+
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;
 
 @end
-
-
 
 NS_ASSUME_NONNULL_END

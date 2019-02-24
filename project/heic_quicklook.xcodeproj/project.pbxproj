@@ -10,6 +10,7 @@
 		4367C2FB2221F8AE007FF78A /* libheif.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; };
 		4367C2FD2221F8F7007FF78A /* libheif.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4367C300222201CE007FF78A /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
+		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2DD2221ED2C001A4294 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2DB2221ED2C001A4294 /* MainMenu.xib */; };
@@ -34,6 +35,8 @@
 		4367C2FA2221F8AE007FF78A /* libheif.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libheif.dylib; path = ../libs/libheif.dylib; sourceTree = SOURCE_ROOT; };
 		4367C2FE222201CE007FF78A /* oHEIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oHEIF.h; sourceTree = "<group>"; };
 		4367C2FF222201CE007FF78A /* oHEIF.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = oHEIF.mm; sourceTree = "<group>"; };
+		4367C3012222B0A3007FF78A /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
+		4367C3022222B0A3007FF78A /* ImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
 		43EBC2D32221ED2B001A4294 /* heic_quicklook_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heic_quicklook_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EBC2D62221ED2B001A4294 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43EBC2D72221ED2B001A4294 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 			children = (
 				4367C2FE222201CE007FF78A /* oHEIF.h */,
 				4367C2FF222201CE007FF78A /* oHEIF.mm */,
+				4367C3012222B0A3007FF78A /* ImageView.h */,
+				4367C3022222B0A3007FF78A /* ImageView.m */,
 				43EBC2D62221ED2B001A4294 /* AppDelegate.h */,
 				43EBC2D72221ED2B001A4294 /* AppDelegate.m */,
 				43EBC2D92221ED2C001A4294 /* Assets.xcassets */,
@@ -163,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4367C3032222B0A3007FF78A /* ImageView.m in Sources */,
 				4367C300222201CE007FF78A /* oHEIF.mm in Sources */,
 				43EBC2E02221ED2C001A4294 /* main.m in Sources */,
 				43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */,

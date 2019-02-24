@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  ImageView.h
 //  heic_quicklook_test
 //
 //  Created by Max Pozdeev on 24/02/2019.
@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
--(void)doOpenFile:(NSString*)filename;
+@interface ImageView : NSView
+
+@property  CGImageRef cgImage;
 
 @end
 
+NS_ASSUME_NONNULL_END

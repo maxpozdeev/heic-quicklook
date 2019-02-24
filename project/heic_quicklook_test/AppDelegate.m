@@ -75,7 +75,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^
    {
 	   self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
-	   if ([self.heicFile decodeFirstImage])
+	   if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
 	   {
 		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
 		   //self.view.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];

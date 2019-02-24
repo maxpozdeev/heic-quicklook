@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) CGImageRef cgImage;
 
 -(instancetype)initWithFileAtPath:(NSString*)path;
--(BOOL)decodeFirstImage;
+-(BOOL)decodeFirstImageWithColorSpace:(CGColorSpaceRef)_colorSpace;
 
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;
 

@@ -24,7 +24,7 @@
 	return self;
 }
 
--(BOOL)decodeFirstImage
+-(BOOL)decodeFirstImageWithColorSpace:(CGColorSpaceRef)_colorSpace
 {
 	try
 	{
@@ -43,16 +43,16 @@
 		if (stride == 0)
 			return NO;
 		
-		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+		//CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 		CGContextRef bitmapContext = CGBitmapContextCreate(
 														   (void*)data,
 														   _width,
 														   _height,
 														   8, // bitsPerComponent
 														   (size_t)stride, // bytesPerRow
-														   colorSpace,
+														   _colorSpace,
 														   kCGImageAlphaNoneSkipLast);
-		CFRelease(colorSpace);
+		//CFRelease(colorSpace);
 		_cgImage = CGBitmapContextCreateImage(bitmapContext);
 		CFRelease(bitmapContext);
 

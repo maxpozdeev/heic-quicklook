@@ -16,6 +16,7 @@
 @property (readonly) CGImageRef cgImage;
 
 -(instancetype)initWithFileAtPath:(NSString*)path;
+-(CGSize)sizeOfPrimaryImage;
 -(BOOL)decodeFirstImageWithColorSpace:(CGColorSpaceRef)_colorSpace;
 
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;

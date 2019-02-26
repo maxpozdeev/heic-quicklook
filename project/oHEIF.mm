@@ -24,6 +24,25 @@
 	return self;
 }
 
+-(CGSize)sizeOfPrimaryImage
+{
+    try
+    {
+        heif::Context ctx = heif::Context();
+        ctx.read_from_file( std::string(_path.UTF8String) );
+        
+        heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
+        CGFloat w = (CGFloat)imageHandle.get_width();
+        CGFloat h = (CGFloat)imageHandle.get_height();
+        return CGSizeMake(w, h);
+    }
+    catch (heif::Error e)
+    {
+        NSLog(@"libheif: %s", e.get_message().c_str() );
+        return CGSizeZero;
+    }
+}
+
 -(BOOL)decodeFirstImageWithColorSpace:(CGColorSpaceRef)_colorSpace
 {
 	try

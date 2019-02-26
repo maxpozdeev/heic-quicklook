@@ -3,3 +3,4 @@
 /libs/local
 /project/*.xcodeproj/xcuserdata/
 /project/*.xcodeproj/*/xcuserdata/
+/build

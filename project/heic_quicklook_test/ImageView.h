@@ -8,12 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface ImageView : NSView
 
 - (void)setCgImage:(CGImageRef)cgImage;
 
 @end
-
-NS_ASSUME_NONNULL_END

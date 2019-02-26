@@ -54,7 +54,7 @@
 }
 
 
-- (void)application:(NSApplication *)sender openFiles:(NSArray<NSString *> *)filenames;
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames;
 {
 	if (filenames && filenames.count > 0)
 		[self doOpenFile:[filenames objectAtIndex:0]];

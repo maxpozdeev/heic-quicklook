@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface oHEIF : NSObject
 
 @property (strong, readonly) NSString *path;
@@ -23,5 +21,3 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;
 
 @end
-
-NS_ASSUME_NONNULL_END

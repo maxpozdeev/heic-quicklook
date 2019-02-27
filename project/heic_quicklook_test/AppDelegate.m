@@ -8,15 +8,16 @@
 
 #import "AppDelegate.h"
 #import "oHEIF.h"
-#import "ImageView.h"
+#import "CIWindowController.h"
 
 @interface AppDelegate ()
 
 
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTextField *label;
-@property (weak) IBOutlet ImageView *view;
 @property (weak) IBOutlet NSImageView *iview;
+
+@property (strong) CIWindowController * wc;
 
 @property (strong) oHEIF *heicFile;
 
@@ -79,8 +80,6 @@
 	   if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
 	   {
 		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
-		   //[self.view setCgImage:self.heicFile.cgImage];
-		   //[self.view setNeedsDisplay:YES];
 		   self.iview.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];
 	   }
 	   else {
@@ -88,6 +87,16 @@
 	   }
 	   
    });
+}
+
+- (IBAction)showCIWindow:(id)sender
+{
+    if (! self.wc)
+        self.wc = [[CIWindowController alloc] initWithWindowNibName:@"CIWindow"];
+    
+    
+    [self.wc showWindow:nil];
+    [self.wc.window makeKeyAndOrderFront:nil];
 }
 
 

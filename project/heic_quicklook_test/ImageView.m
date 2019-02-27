@@ -20,9 +20,9 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[self _drawCG];   //faster if no interpolation
+	//[self _drawCG];   //faster if no interpolation
 	
-	//[self _drawCI]; //no much difference
+	[self _drawCI]; //no much difference
 }
 
 
@@ -31,7 +31,7 @@
 	_cgImage = cgImage;
 	
 	//uncomment to use _drawCI
-	//_ciImage = [CIImage imageWithCGImage:cgImage];
+	_ciImage = [CIImage imageWithCGImage:cgImage];
 }
 
 

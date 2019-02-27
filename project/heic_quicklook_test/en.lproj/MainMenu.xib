@@ -71,9 +71,15 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="bib-Uj-vzu">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="Was-JA-tGl">
+                            <menuItem title="New" hidden="YES" enabled="NO" keyEquivalent="n" id="diP-pZ-NLk">
                                 <connections>
-                                    <action selector="newDocument:" target="-1" id="4Si-XN-c54"/>
+                                    <action selector="newDocument:" target="-1" id="vw8-k6-LDT"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show CIWindow" id="Was-JA-tGl">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showCIWindow:" target="-1" id="quv-pz-7q4"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">

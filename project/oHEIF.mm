@@ -87,9 +87,53 @@
 	return NO;
 }
 
+-(BOOL)decodePrimaryImageInOriginalColorspace
+{
+	try
+	{
+		heif::Context ctx = heif::Context();
+		ctx.read_from_file( std::string(_path.UTF8String) );
+		
+		heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
+		_width  = (size_t)imageHandle.get_width();
+		_height = (size_t)imageHandle.get_height();
+		
+		heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined);
+		
+		heif_colorspace cs = image.get_colorspace();
+		heif_chroma chroma = image.get_chroma_format();
+		
+		if (cs == heif_colorspace_RGB) {
+			NSLog(@"Colorspace: RGB, %i/%i/%i bpp", image.get_bits_per_pixel(heif_channel_R), image.get_bits_per_pixel(heif_channel_G), image.get_bits_per_pixel(heif_channel_B));
+		}
+		else if (cs == heif_colorspace_YCbCr) {
+			NSLog(@"Colorspace: YUV, %i/%i/%i bpp", image.get_bits_per_pixel(heif_channel_Y), image.get_bits_per_pixel(heif_channel_Cb), image.get_bits_per_pixel(heif_channel_Cr));
+		}
+		else if (cs == heif_colorspace_monochrome) {
+			NSLog(@"Colorspace: monochrome");
+		}
+		else
+			NSLog(@"Colorspace: unknown %i", cs);
+
+		
+		if (chroma == heif_chroma_420)
+			NSLog(@"Chroma: 4:2:0");
+		else
+			NSLog(@"Chroma: unknown %i", cs);
+		
+		return YES;
+	}
+	catch (heif::Error e)
+	{
+		NSLog(@"libheif: %s", e.get_message().c_str() );
+		return NO;
+	}
+	return NO;
+}
+
 -(void)dealloc
 {
-	CFRelease(_cgImage);
+	if (_cgImage) CFRelease(_cgImage);
 	//[super dealloc]; //ARC will
 }
 

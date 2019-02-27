@@ -7,6 +7,8 @@
 //
 
 #import "ImageView.h"
+//#import <CoreImage/CIContext.h>
+#import <QuartzCore/CoreImage.h>
 
 @interface ImageView () {
 	CIImage * _ciImage;
@@ -20,9 +22,11 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	//[self _drawCG];   //faster if no interpolation
-	
-	[self _drawCI]; //no much difference
+    if (self.useCI)
+        [self _drawCI];
+    else
+        [self _drawCG]; //faster if no interpolation
+ 
 }
 
 
@@ -77,23 +81,24 @@
 	CGFloat w = (CGFloat) CGImageGetWidth(_cgImage);
 	
 	NSSize tsz = [self bounds].size; //in points
+    CIContext *ctx = [[NSGraphicsContext currentContext] CIContext];
+    
 
 	if (w < tsz.width && h < tsz.height)
 	{
-		[_ciImage drawAtPoint:NSMakePoint((tsz.width-w)/2, (tsz.height-h)/2)
-					 fromRect:NSMakeRect(0, 0, w, h)
-					operation:NSCompositeSourceOver
-					fraction:1];
+        [ctx drawImage:_ciImage
+               atPoint:NSMakePoint((tsz.width-w)/2, (tsz.height-h)/2)
+              fromRect:NSMakeRect(0, 0, w, h)];
 	}
 	else
 	{
 		//need to downscale and draw in the center of view
 		CGFloat scale = MAX(w/tsz.width, h/tsz.height);
 		NSRect targetRect = NSMakeRect((tsz.width-w/scale)/2, (tsz.height-h/scale)/2, w/scale, h/scale);
-		[_ciImage drawInRect:targetRect
-					fromRect:NSMakeRect(0, 0, w, h)
-				   operation:NSCompositeSourceOver
-					fraction:1];
+        
+        [ctx drawImage:_ciImage
+                inRect:targetRect
+              fromRect:NSMakeRect(0, 0, w, h)];
 	}
 	
 }

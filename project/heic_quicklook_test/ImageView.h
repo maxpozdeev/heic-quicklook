@@ -10,6 +10,8 @@
 
 @interface ImageView : NSView
 
+@property BOOL useCI;
+
 - (void)setCgImage:(CGImageRef)cgImage;
 
 @end

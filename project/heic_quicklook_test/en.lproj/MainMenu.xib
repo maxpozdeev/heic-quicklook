@@ -76,10 +76,16 @@
                                     <action selector="newDocument:" target="-1" id="vw8-k6-LDT"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show CIWindow" id="Was-JA-tGl">
+                            <menuItem title="Show CGWindow" id="Was-JA-tGl">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showCIWindow:" target="-1" id="quv-pz-7q4"/>
+                                    <action selector="showCGWindow:" target="-1" id="wzJ-Rc-JLp"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show CIWindow" id="vPy-mV-6KE">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showCIWindow:" target="-1" id="gvB-1d-xkP"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "oHEIF.h"
 #import "CIWindowController.h"
+#import "CGWindowController.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,8 @@
 @property (weak) IBOutlet NSTextField *label;
 @property (weak) IBOutlet NSImageView *iview;
 
-@property (strong) CIWindowController * wc;
+@property (strong) CIWindowController * wcCI;
+@property (strong) CGWindowController * wcCG;
 
 @property (strong) oHEIF *heicFile;
 
@@ -91,12 +93,22 @@
 
 - (IBAction)showCIWindow:(id)sender
 {
-    if (! self.wc)
-        self.wc = [[CIWindowController alloc] initWithWindowNibName:@"CIWindow"];
+    if (! self.wcCI)
+        self.wcCI = [[CIWindowController alloc] initWithWindowNibName:@"CIWindow"];
     
     
-    [self.wc showWindow:nil];
-    [self.wc.window makeKeyAndOrderFront:nil];
+    [self.wcCI showWindow:nil];
+    [self.wcCI.window makeKeyAndOrderFront:nil];
+}
+
+- (IBAction)showCGWindow:(id)sender
+{
+    if (! self.wcCG)
+        self.wcCG = [[CGWindowController alloc] initWithWindowNibName:@"CGWindow"];
+    
+    
+    [self.wcCG showWindow:nil];
+    [self.wcCG.window makeKeyAndOrderFront:nil];
 }
 
 

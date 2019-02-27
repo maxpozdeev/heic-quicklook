@@ -1,16 +1,16 @@
 //
-//  CIWindowController.m
+//  CGWindowController.m
 //  heic_quicklook
 //
 //  Created by max on 27.02.19.
 //  Copyright (c) 2019 Max Pozdeev. All rights reserved.
 //
 
-#import "CIWindowController.h"
+#import "CGWindowController.h"
 #import "ImageView.h"
 #import "oHEIF.h"
 
-@interface CIWindowController ()
+@interface CGWindowController ()
 
 @property (weak) IBOutlet NSTextField *label;
 @property (weak) IBOutlet ImageView *view;
@@ -19,17 +19,13 @@
 
 @end
 
-@implementation CIWindowController
+@implementation CGWindowController
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
-    self.view.useCI = YES;
 }
-
 
 - (IBAction)openFile:(id)sender {
     
@@ -59,19 +55,19 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^
-       {
-           self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
-           if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
-           {
-               self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
-               [self.view setCgImage:self.heicFile.cgImage];
-               [self.view setNeedsDisplay:YES];
-           }
-           else {
-               self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
-           }
-           
-       });
+                   {
+                       self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
+                       if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
+                       {
+                           self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+                           [self.view setCgImage:self.heicFile.cgImage];
+                           [self.view setNeedsDisplay:YES];
+                       }
+                       else {
+                           self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+                       }
+                       
+                   });
 }
 
 @end

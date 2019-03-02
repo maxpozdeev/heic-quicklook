@@ -11,6 +11,8 @@
 		4367C2FD2221F8F7007FF78A /* libheif.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4367C300222201CE007FF78A /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
 		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
+		43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; };
+		43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
@@ -35,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */,
 				4367C2FD2221F8F7007FF78A /* libheif.dylib in Copy Libs */,
 			);
 			name = "Copy Libs";
@@ -58,6 +61,7 @@
 		4367C2FF222201CE007FF78A /* oHEIF.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = oHEIF.mm; sourceTree = SOURCE_ROOT; };
 		4367C3012222B0A3007FF78A /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		4367C3022222B0A3007FF78A /* ImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
+		43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.dylib; path = ../libs/libturbojpeg/libturbojpeg.dylib; sourceTree = "<group>"; };
 		43EBC2D32221ED2B001A4294 /* heic_quicklook_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heic_quicklook_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EBC2D62221ED2B001A4294 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		43EBC2D72221ED2B001A4294 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4367C2FB2221F8AE007FF78A /* libheif.dylib in Frameworks */,
+				43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +113,7 @@
 				509C15512225B09C00A601EA /* heic-quicklook */,
 				43EBC2D42221ED2B001A4294 /* Products */,
 				4367C2FA2221F8AE007FF78A /* libheif.dylib */,
+				43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -434,11 +440,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				DSTROOT = "./build/$(CONFIGURATION)";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../libs/include",
+					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
+				);
 				INFOPLIST_FILE = heic_quicklook_test/Info.plist;
 				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks $(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../libs";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/libturbojpeg",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pozdeev.heic-quicklook-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -451,10 +463,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../libs/include",
+					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
+				);
 				INFOPLIST_FILE = heic_quicklook_test/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks $(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/../libs";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/libturbojpeg",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pozdeev.heic-quicklook-test";
 				PRODUCT_NAME = "$(TARGET_NAME)";

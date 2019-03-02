@@ -5,6 +5,7 @@ rm -rf include
 mkdir local
 
 PREFIX="${PWD}/local"
+#PREFIX_JPEG="${PWD}/libturbojpeg"
 FLAGS="-mmacosx-version-min=10.7 -stdlib=libc++"
 
 # libde265
@@ -22,6 +23,7 @@ export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
 cd libheif
 
 make clean > /dev/null
+#./configure --prefix=$PREFIX --disable-go CXXFLAGS="${FLAGS} -I${PREFIX_JPEG}/include" LDFLAGS=-L${PREFIX_JPEG}
 ./configure --prefix=$PREFIX --disable-go CXXFLAGS="${FLAGS}"
 make
 make install

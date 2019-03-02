@@ -56,10 +56,15 @@
     
     dispatch_async(dispatch_get_main_queue(), ^
                    {
+					   NSDate *methodStart = [NSDate date];
+					   
                        self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
                        if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
                        {
-                           self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+						   NSDate *methodFinish = [NSDate date];
+						   NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
+						   
+                           self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | %f sec", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height, executionTime];
                            [self.view setCgImage:self.heicFile.cgImage];
                            [self.view setNeedsDisplay:YES];
                        }

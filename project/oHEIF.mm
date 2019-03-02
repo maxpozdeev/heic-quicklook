@@ -8,6 +8,7 @@
 
 #import "oHEIF.h"
 #include <libheif/heif_cxx.h>
+#include <turbojpeg.h>
 
 @implementation oHEIF
 
@@ -87,6 +88,103 @@
 	return NO;
 }
 
+
+-(BOOL)decodePrimaryImageWithColorSpace2:(CGColorSpaceRef)_colorSpace
+{
+	CGColorSpaceModel model = CGColorSpaceGetModel(_colorSpace);
+	if (model != kCGColorSpaceModelRGB)
+	{
+		NSLog(@"Output colorspace is not supported: %@", CGColorSpaceCopyName(_colorSpace));
+		return NO;
+	}
+	
+	
+	try
+	{
+		heif::Context ctx = heif::Context();
+		ctx.read_from_file( std::string(_path.UTF8String) );
+		
+		heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
+		_width  = (size_t)imageHandle.get_width();
+		_height = (size_t)imageHandle.get_height();
+		
+		heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined);
+		
+		heif_colorspace cs = image.get_colorspace();
+		heif_chroma chroma = image.get_chroma_format();
+		
+		if (heif_colorspace_YCbCr == cs)
+		{
+			//convert to RGB using turbo-jpeg
+			
+			TJSAMP samp;
+			if (heif_chroma_420 == chroma) samp = TJSAMP_420;
+			else if (heif_chroma_422 == chroma) samp = TJSAMP_422;
+			else if (heif_chroma_444 == chroma) samp = TJSAMP_444;
+			else {
+				NSLog(@"Unsupported input chroma : %i", chroma);
+				return NO;
+			}
+			
+			if (image.get_bits_per_pixel(heif_channel_Y) != 8 ||
+				image.get_bits_per_pixel(heif_channel_Cb) != 8 ||
+				image.get_bits_per_pixel(heif_channel_Cr) != 8)
+			{
+				NSLog(@"Unexpected bits per pixel");
+				return NO;
+			}
+			
+			
+			int in_y_stride=0, in_cb_stride=0, in_cr_stride=0;
+			const uint8_t* y = image.get_plane(heif_channel_Y, &in_y_stride);
+			const uint8_t* u = image.get_plane(heif_channel_Cb, &in_cb_stride);
+			const uint8_t* v = image.get_plane(heif_channel_Cr, &in_cr_stride);
+			const unsigned char* planes[] = {y, u, v};
+			
+			tjhandle tjh = tjInitDecompress();
+			int strides[] = {in_y_stride, in_cb_stride, in_cr_stride};
+			unsigned char *buf = (unsigned char *)malloc(_width * 4 *_height);
+			
+			int r = tjDecodeYUVPlanes(tjh, (const unsigned char**)&planes, (int*)&strides, samp, buf, (int)_width, (int)_width*4, (int)_height, TJPF_RGBA, 0);
+			if (r != 0)
+			{
+				NSLog(@"YUV decode failed: %i", r);
+				free(buf);
+				tjDestroy(tjh);
+				return NO;
+			}
+			tjDestroy(tjh);
+			
+			CGContextRef bitmapContext = CGBitmapContextCreate(
+															   (void*)buf,
+															   _width,
+															   _height,
+															   8, // bitsPerComponent
+															   (size_t)_width*4, // bytesPerRow
+															   _colorSpace,
+															   kCGImageAlphaNoneSkipLast);
+			_cgImage = CGBitmapContextCreateImage(bitmapContext);
+			CFRelease(bitmapContext);
+			free(buf);
+			
+		}
+		else
+		{
+			NSLog(@"Input file colorspace is not supported yet : %i", cs);
+			return NO;
+		}
+		
+		
+		
+		return YES;
+	}
+	catch (heif::Error e)
+	{
+		NSLog(@"libheif: %s", e.get_message().c_str() );
+	}
+	return NO;;
+}
+
 -(BOOL)decodePrimaryImageInOriginalColorspace
 {
 	try
@@ -121,7 +219,7 @@
 		else
 			NSLog(@"Chroma: unknown %i", cs);
 		
-		return YES;
+		return NO;
 	}
 	catch (heif::Error e)
 	{
@@ -130,6 +228,8 @@
 	}
 	return NO;
 }
+
+
 
 -(void)dealloc
 {

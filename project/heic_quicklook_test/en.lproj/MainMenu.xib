@@ -82,10 +82,10 @@
                                     <action selector="showCGWindow:" target="-1" id="wzJ-Rc-JLp"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show CIWindow" id="vPy-mV-6KE">
+                            <menuItem title="Show GLWindow" id="vPy-mV-6KE">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showCIWindow:" target="-1" id="gvB-1d-xkP"/>
+                                    <action selector="showGLWindow:" target="-1" id="SCT-t1-5Ut"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">

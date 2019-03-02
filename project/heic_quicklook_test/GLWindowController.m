@@ -6,28 +6,26 @@
 //  Copyright (c) 2019 Max Pozdeev. All rights reserved.
 //
 
-#import "CIWindowController.h"
-#import "ImageView.h"
+#import "GLWindowController.h"
+#import "GLImageView.h"
 #import "oHEIF.h"
 
-@interface CIWindowController ()
+@interface GLWindowController ()
 
 @property (weak) IBOutlet NSTextField *label;
-@property (weak) IBOutlet ImageView *view;
+@property (weak) IBOutlet GLImageView *view;
 
 @property (strong) oHEIF *heicFile;
 
 @end
 
-@implementation CIWindowController
+@implementation GLWindowController
 
 - (void)windowDidLoad
 {
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
-    self.view.useCI = YES;
 }
 
 

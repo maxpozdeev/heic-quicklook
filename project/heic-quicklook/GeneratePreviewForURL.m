@@ -27,9 +27,14 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         }
         
         CGContextRef context = QLPreviewRequestCreateContext(preview, size, true, NULL);
-        CGColorSpaceRef cs = CGBitmapContextGetColorSpace(context); //no need to release
+		//CGColorSpaceRef cs = CGBitmapContextGetColorSpace(context); //no need to release //kCGColorSpaceDeviceRGB
+		CGColorSpaceRef cs = CGDisplayCopyColorSpace(CGMainDisplayID()); //RGB with monitor color profile
+		//NSLog(@"colorspace: %@", cs);
         
-        if ([heicFile decodeFirstImageWithColorSpace:cs])
+        //if ([heicFile decodeFirstImageWithColorSpace:cs])
+		BOOL decoded = [heicFile decodePrimaryImageWithColorSpace2:cs];
+		CGColorSpaceRelease(cs);
+		if (decoded)
         {
             if (QLPreviewRequestIsCancelled(preview)) {
                 CGContextRelease(context);

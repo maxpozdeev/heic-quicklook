@@ -117,4 +117,29 @@
 }
 
 
+- (IBAction)logFile:(id)sender {
+	
+	NSOpenPanel *openPanel	= [NSOpenPanel openPanel];
+	openPanel.canChooseDirectories = NO;
+	openPanel.allowsMultipleSelection = NO;
+	
+	[openPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result)
+	 {
+		 if(result == NSFileHandlingPanelOKButton)
+		 {
+			 self.heicFile = [[oHEIF alloc] initWithFileAtPath:openPanel.URL.path];
+			 if (!self.heicFile) {
+				 return;
+			 }
+			 
+			 if ([self.heicFile decodePrimaryImageAndLog]) {
+				 
+			 }
+			 else {
+				 NSLog(@"Failed to decode %@", self.heicFile.path.lastPathComponent);
+			 }
+		 }
+	 }];
+}
+
 @end

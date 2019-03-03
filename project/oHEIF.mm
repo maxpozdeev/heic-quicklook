@@ -44,7 +44,7 @@
     }
 }
 
--(BOOL)decodeFirstImageWithColorSpace:(CGColorSpaceRef)_colorSpace
+-(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace
 {
 	try
 	{
@@ -185,7 +185,7 @@
 	return NO;;
 }
 
--(BOOL)decodePrimaryImageInOriginalColorspace
+-(BOOL)decodePrimaryImageAndLog
 {
 	try
 	{
@@ -218,6 +218,29 @@
 			NSLog(@"Chroma: 4:2:0");
 		else
 			NSLog(@"Chroma: unknown %i", cs);
+		
+		
+		heif_color_profile_type cpt = heif_image_handle_get_color_profile_type(imageHandle.get_raw_image_handle());
+		if (cpt == heif_color_profile_type_not_present) {
+			NSLog(@"No color profile");
+		}
+		else
+		{
+			size_t cpsize = heif_image_handle_get_raw_color_profile_size(imageHandle.get_raw_image_handle());
+			
+			if (cpt == heif_color_profile_type_nclx) {
+				NSLog(@"Color profile: nclx, %ld bytes", cpsize);
+			}
+			else if (cpt == heif_color_profile_type_rICC) {
+				NSLog(@"Color profile: rICC, %ld bytes", cpsize);
+			}
+			else if (cpt == heif_color_profile_type_prof) {
+				NSLog(@"Color profile: prof, %ld bytes", cpsize);
+			}
+			else {
+				NSLog(@"Color profile: unknown (%i), %ld bytes", cpt, cpsize);
+			}
+		}
 		
 		return NO;
 	}

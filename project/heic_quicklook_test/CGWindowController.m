@@ -59,7 +59,10 @@
 					   NSDate *methodStart = [NSDate date];
 					   
                        self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
-                       if ([self.heicFile decodeFirstImageWithColorSpace:self.window.colorSpace.CGColorSpace])
+					   
+					   //CGColorSpaceRef cs = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
+					   CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
+                       if ([self.heicFile decodePrimaryImageWithColorSpace:cs])
                        {
 						   NSDate *methodFinish = [NSDate date];
 						   NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
@@ -71,6 +74,7 @@
                        else {
                            self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
                        }
+					   CGColorSpaceRelease(cs);
                        
                    });
 }

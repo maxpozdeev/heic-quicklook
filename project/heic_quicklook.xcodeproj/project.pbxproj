@@ -13,6 +13,8 @@
 		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
 		43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; };
 		43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		43BF5718222BE66900AFE042 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; };
+		43BF5719222BE67D00AFE042 /* libturbojpeg.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
@@ -27,7 +29,7 @@
 		509C15592225B09C00A601EA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 509C15582225B09C00A601EA /* main.c */; };
 		50B92F3A2225B56600A30E29 /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
 		50F2B15A2225B1F900F7CFB2 /* libheif.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; };
-		50F2B15C2225B29900F7CFB2 /* libheif.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		50F2B15C2225B29900F7CFB2 /* libheif.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,14 +45,16 @@
 			name = "Copy Libs";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50F2B15B2225B28D00F7CFB2 /* CopyFiles */ = {
+		50F2B15B2225B28D00F7CFB2 /* Copy Libs */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				50F2B15C2225B29900F7CFB2 /* libheif.dylib in CopyFiles */,
+				43BF5719222BE67D00AFE042 /* libturbojpeg.dylib in Copy Libs */,
+				50F2B15C2225B29900F7CFB2 /* libheif.dylib in Copy Libs */,
 			);
+			name = "Copy Libs";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -99,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50F2B15A2225B1F900F7CFB2 /* libheif.dylib in Frameworks */,
+				43BF5718222BE66900AFE042 /* libturbojpeg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +213,7 @@
 				509C154C2225B09C00A601EA /* Frameworks */,
 				509C154D2225B09C00A601EA /* Headers */,
 				509C154E2225B09C00A601EA /* Resources */,
-				50F2B15B2225B28D00F7CFB2 /* CopyFiles */,
+				50F2B15B2225B28D00F7CFB2 /* Copy Libs */,
 			);
 			buildRules = (
 			);
@@ -496,6 +501,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
+					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
@@ -504,6 +510,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/libturbojpeg",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -523,6 +530,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
+					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
@@ -531,6 +539,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../libs",
+					"$(PROJECT_DIR)/../libs/libturbojpeg",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";

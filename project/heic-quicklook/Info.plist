@@ -11,8 +11,9 @@
 			<string>QLGenerator</string>
 			<key>LSItemContentTypes</key>
 			<array>
-                <string>dyn.ah62d4rv4ge80u3pmqq</string>
-            </array>
+				<string>dyn.ah62d4rv4ge80u3pmqq</string>
+				<string>dyn.ah62d4rv4ge80u3pmqr202</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>

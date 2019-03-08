@@ -12,8 +12,8 @@ FLAGS="-mmacosx-version-min=10.7 -stdlib=libc++"
 cd libde265
 make clean > /dev/null
 # --disable-sse ?
-./configure --prefix=$PREFIX --disable-shared --enable-static --disable-dec265 --disable-sherlock265 --disable-encoder CXXFLAGS="${FLAGS}"
-make
+./configure --prefix=$PREFIX --disable-shared --enable-static --disable-dec265 --disable-sherlock265 --disable-encoder CXXFLAGS="${FLAGS}" || exit 1
+make || exit 1
 make install
 cd ..
 
@@ -24,8 +24,8 @@ cd libheif
 
 make clean > /dev/null
 #./configure --prefix=$PREFIX --disable-go CXXFLAGS="${FLAGS} -I${PREFIX_JPEG}/include" LDFLAGS=-L${PREFIX_JPEG}
-./configure --prefix=$PREFIX --disable-go CXXFLAGS="${FLAGS}"
-make
+./configure --prefix=$PREFIX --disable-go --disable-examples CXXFLAGS="${FLAGS}" || exit 1
+make || exit 1
 make install
 cd ..
 

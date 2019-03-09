@@ -31,12 +31,10 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 		}
 		
 		
-		CGColorSpaceRef cs = CGColorSpaceCreateDeviceRGB();
-		BOOL decoded = [heicFile decodePrimaryImageWithColorSpace2:cs];
+		BOOL decoded = [heicFile decodePrimaryImage];
 		if (decoded)
 		{
 			if (QLThumbnailRequestIsCancelled(thumbnail)) {
-				CGColorSpaceRelease(cs);
 				return noErr;
 			}
 
@@ -48,7 +46,7 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 				CGFloat scale = MAX(size.width/needSize.width, size.height/needSize.height);
 				CGRect targetRect = CGRectIntegral(CGRectMake(0, 0, size.width/scale, size.height/scale));
 				
-				CGContextRef newImageContext = CGBitmapContextCreate (NULL, targetRect.size.width, targetRect.size.height, 8, 0, cs, kCGImageAlphaNoneSkipLast);
+				CGContextRef newImageContext = CGBitmapContextCreate (NULL, targetRect.size.width, targetRect.size.height, 8, 0, CGImageGetColorSpace(imageToShow), kCGImageAlphaNoneSkipLast);
 				CGContextSetInterpolationQuality(newImageContext, kCGInterpolationNone);
 				CGContextDrawImage(newImageContext, targetRect, heicFile.cgImage);
 				imageToShow = CGBitmapContextCreateImage(newImageContext);
@@ -70,7 +68,6 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 	
 			QLThumbnailRequestSetImage(thumbnail, imageToShow, (__bridge CFDictionaryRef) properties);
 		}
-		CGColorSpaceRelease(cs);
 
 	}
 	

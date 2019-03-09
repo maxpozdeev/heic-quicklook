@@ -81,7 +81,8 @@
 	   NSDate *methodStart = [NSDate date];
 	   
 	   self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
-	   if ([self.heicFile decodePrimaryImageWithColorSpace2:self.window.colorSpace.CGColorSpace])
+	   if ([self.heicFile decodePrimaryImage])
+	   //if ([self.heicFile decodePrimaryImageAndLog])
 	   {
 		   NSDate *methodFinish = [NSDate date];
 		   NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];

@@ -89,16 +89,8 @@
 }
 
 
--(BOOL)decodePrimaryImageWithColorSpace2:(CGColorSpaceRef)_colorSpace
+-(BOOL)decodePrimaryImage
 {
-	CGColorSpaceModel model = CGColorSpaceGetModel(_colorSpace);
-	if (model != kCGColorSpaceModelRGB)
-	{
-		NSLog(@"Output colorspace is not supported: %@", CGColorSpaceCopyName(_colorSpace));
-		return NO;
-	}
-	
-	
 	try
 	{
 		heif::Context ctx = heif::Context();
@@ -155,18 +147,51 @@
 			}
 			tjDestroy(tjh);
 			
+			
+			// Try to use embedded color profile
+			CGColorSpaceRef cs = NULL;
+			
+			heif_color_profile_type cpt = heif_image_handle_get_color_profile_type(imageHandle.get_raw_image_handle());
+			if (cpt != heif_color_profile_type_not_present)
+			{
+				size_t cpsize = heif_image_handle_get_raw_color_profile_size(imageHandle.get_raw_image_handle());
+				void *cpdata = malloc(cpsize);
+				heif_error err = heif_image_handle_get_raw_color_profile((const heif_image_handle*)imageHandle.get_raw_image_handle(), cpdata);
+				if (err.code == heif_error_Ok)
+				{
+					NSData *csd = [NSData dataWithBytes:cpdata length:cpsize];
+					cs = CGColorSpaceCreateWithICCProfile((__bridge CFDataRef)csd);
+				}
+				free(cpdata);
+			}
+			
+			// instead use sRGB
+			if (!cs) {
+				cs = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
+			}
+			
 			CGContextRef bitmapContext = CGBitmapContextCreate(
 															   (void*)buf,
 															   _width,
 															   _height,
 															   8, // bitsPerComponent
 															   (size_t)_width*4, // bytesPerRow
-															   _colorSpace,
+															   cs,
 															   kCGImageAlphaNoneSkipLast);
 			_cgImage = CGBitmapContextCreateImage(bitmapContext);
+			CGColorSpaceRelease(cs);
 			CFRelease(bitmapContext);
 			free(buf);
-			
+
+/*
+			// convert to sRGB
+			cs = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
+			bitmapContext = CGBitmapContextCreate( nil, _width, _height, 8, 0, cs, kCGImageAlphaNoneSkipLast);
+			CGContextDrawImage(bitmapContext, CGRectMake(0, 0, _width, _height), _cgImage);
+			_cgImage = CGBitmapContextCreateImage(bitmapContext);
+			CGColorSpaceRelease(cs);
+			CFRelease(bitmapContext);
+*/
 		}
 		else
 		{
@@ -240,7 +265,21 @@
 			else {
 				NSLog(@"Color profile: unknown (%i), %ld bytes", cpt, cpsize);
 			}
+			
+			void * cpdata = malloc(cpsize);
+			heif_error err = heif_image_handle_get_raw_color_profile((const heif_image_handle*)imageHandle.get_raw_image_handle(), cpdata);
+			if (err.code) {
+				NSLog(@"Color profile: failed to copy profile data (%s)", err.message);
+			}
+			else {
+				NSData *csd = [NSData dataWithBytes:cpdata length:cpsize];
+				CGColorSpaceRef origCs = CGColorSpaceCreateWithICCProfile((__bridge CFDataRef)csd);
+				NSLog(@"Colorspace: %@", origCs);
+			}
+			free(cpdata);
 		}
+		
+		
 		
 		return NO;
 	}

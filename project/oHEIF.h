@@ -18,7 +18,7 @@
 -(instancetype)initWithFileAtPath:(NSString*)path;
 -(CGSize)sizeOfPrimaryImage;
 -(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace;
--(BOOL)decodePrimaryImageWithColorSpace2:(CGColorSpaceRef)_colorSpace;
+-(BOOL)decodePrimaryImage;
 -(BOOL)decodePrimaryImageAndLog;
 
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;

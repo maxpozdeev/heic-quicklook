@@ -84,7 +84,12 @@
 		   self.iview.image = [[NSImage alloc] initWithCGImage:self.heicFile.cgImage size:NSZeroSize];
 	   }
 	   else {
-		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image", self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height];
+           NSString *libError = self.heicFile.lastErrorString;
+           if (libError && libError.length > 0) {
+               libError = [NSString stringWithFormat:@"(%@)", libError];
+           }
+		   self.label.stringValue = [NSString stringWithFormat:@"%@ | %ldx%ld | Can not decode image %@",
+                                     self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height, libError];
 	   }
 	   
    });

@@ -39,53 +39,10 @@
     }
     catch (heif::Error e)
     {
-        NSLog(@"libheif: %s", e.get_message().c_str() );
+        self.lastErrorString = [NSString stringWithFormat:@"libheif: %s", e.get_message().c_str()];
+        NSLog(@"%@", self.lastErrorString);
         return CGSizeZero;
     }
-}
-
--(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace
-{
-	try
-	{
-		heif::Context ctx = heif::Context();
-		ctx.read_from_file( std::string(_path.UTF8String) );
-		
-		heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
-		_width  = (size_t)imageHandle.get_width();
-		_height = (size_t)imageHandle.get_height();
-		
-		heif::Image image = imageHandle.decode_image(heif_colorspace_RGB, heif_chroma_interleaved_RGBA); //32 bit per pixel
-		
-		int stride;
-		const uint8_t* data = image.get_plane(heif_channel_interleaved, &stride);
-		
-		if (stride == 0)
-			return NO;
-		
-		//CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-		CGContextRef bitmapContext = CGBitmapContextCreate(
-														   (void*)data,
-														   _width,
-														   _height,
-														   8, // bitsPerComponent
-														   (size_t)stride, // bytesPerRow
-														   _colorSpace,
-														   kCGImageAlphaNoneSkipLast);
-		//CFRelease(colorSpace);
-		_cgImage = CGBitmapContextCreateImage(bitmapContext);
-		CFRelease(bitmapContext);
-
-		return YES;
-		
-		//CFBridgingRelease(cgImage); //CFRelease(cgImage);
-	}
-	catch (heif::Error e)
-	{
-		NSLog(@"libheif: %s", e.get_message().c_str() );
-		return NO;
-	}
-	return NO;
 }
 
 
@@ -246,10 +203,57 @@
 	}
 	catch (heif::Error e)
 	{
-		NSLog(@"libheif: %s", e.get_message().c_str() );
+        self.lastErrorString = [NSString stringWithFormat:@"libheif: %s", e.get_message().c_str()];
+		NSLog(@"%@", self.lastErrorString);
 	}
 	return NO;;
 }
+
+
+-(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace
+{
+    try
+    {
+        heif::Context ctx = heif::Context();
+        ctx.read_from_file( std::string(_path.UTF8String) );
+        
+        heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
+        _width  = (size_t)imageHandle.get_width();
+        _height = (size_t)imageHandle.get_height();
+        
+        heif::Image image = imageHandle.decode_image(heif_colorspace_RGB, heif_chroma_interleaved_RGBA); //32 bit per pixel
+        
+        int stride;
+        const uint8_t* data = image.get_plane(heif_channel_interleaved, &stride);
+        
+        if (stride == 0)
+            return NO;
+        
+        //CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef bitmapContext = CGBitmapContextCreate(
+                                                           (void*)data,
+                                                           _width,
+                                                           _height,
+                                                           8, // bitsPerComponent
+                                                           (size_t)stride, // bytesPerRow
+                                                           _colorSpace,
+                                                           kCGImageAlphaNoneSkipLast);
+        //CFRelease(colorSpace);
+        _cgImage = CGBitmapContextCreateImage(bitmapContext);
+        CFRelease(bitmapContext);
+
+        return YES;
+        
+        //CFBridgingRelease(cgImage); //CFRelease(cgImage);
+    }
+    catch (heif::Error e)
+    {
+        NSLog(@"libheif: %s", e.get_message().c_str() );
+        return NO;
+    }
+    return NO;
+}
+
 
 -(BOOL)decodePrimaryImageAndLog
 {

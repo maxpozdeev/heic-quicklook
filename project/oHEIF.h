@@ -14,11 +14,12 @@
 @property (readonly) size_t width;
 @property (readonly) size_t height;
 @property (readonly) CGImageRef cgImage;
+@property (readwrite) NSString *lastErrorString;
 
 -(instancetype)initWithFileAtPath:(NSString*)path;
 -(CGSize)sizeOfPrimaryImage;
--(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace;
 -(BOOL)decodePrimaryImage;
+-(BOOL)decodePrimaryImageWithColorSpace:(CGColorSpaceRef)_colorSpace;
 -(BOOL)decodePrimaryImageAndLog;
 
 +(NSString*)stringSizeOfImageAtPath:(NSString*)path;

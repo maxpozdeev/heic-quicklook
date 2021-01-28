@@ -99,12 +99,16 @@
 		heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
 		_width  = (size_t)imageHandle.get_width();
 		_height = (size_t)imageHandle.get_height();
-		
-		heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined);
-		
+
+        // As of v1.10 libheif forces to convert colorspace from YUV to RGB (with heif_chroma_444).
+        // TODO: We cannot get raw decoded image without internal libheif color conversions.
+        //heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined);
+        
+		heif::Image image = imageHandle.decode_image(heif_colorspace_RGB, heif_chroma_interleaved_RGBA);
+
 		heif_colorspace cs = image.get_colorspace();
 		heif_chroma chroma = image.get_chroma_format();
-		
+    		
 		if (heif_colorspace_YCbCr == cs)
 		{
 			//convert to RGB using turbo-jpeg
@@ -183,16 +187,53 @@
 			CFRelease(bitmapContext);
 			free(buf);
 
-/*
-			// convert to sRGB
-			cs = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
-			bitmapContext = CGBitmapContextCreate( nil, _width, _height, 8, 0, cs, kCGImageAlphaNoneSkipLast);
-			CGContextDrawImage(bitmapContext, CGRectMake(0, 0, _width, _height), _cgImage);
-			_cgImage = CGBitmapContextCreateImage(bitmapContext);
-			CGColorSpaceRelease(cs);
-			CFRelease(bitmapContext);
-*/
 		}
+        else if (heif_colorspace_RGB == cs)
+        {
+            //int bpp = image.get_bits_per_pixel(heif_channel_interleaved); //32
+            
+            int stride;
+            uint8_t* data = image.get_plane(heif_channel_interleaved, &stride);
+            
+            if ( ! data ) {
+                NSLog(@"No plane data after decoding");
+            }
+            
+            
+            // Try to use embedded color profile
+            CGColorSpaceRef cs = NULL;
+            
+            heif_color_profile_type cpt = heif_image_handle_get_color_profile_type(imageHandle.get_raw_image_handle());
+            if (cpt != heif_color_profile_type_not_present)
+            {
+                size_t cpsize = heif_image_handle_get_raw_color_profile_size(imageHandle.get_raw_image_handle());
+                void *cpdata = malloc(cpsize);
+                heif_error err = heif_image_handle_get_raw_color_profile((const heif_image_handle*)imageHandle.get_raw_image_handle(), cpdata);
+                if (err.code == heif_error_Ok)
+                {
+                    NSData *csd = [NSData dataWithBytes:cpdata length:cpsize];
+                    cs = CGColorSpaceCreateWithICCProfile((__bridge CFDataRef)csd);
+                }
+                free(cpdata);
+            }
+            
+            // instead use sRGB
+            if (!cs) {
+                cs = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
+            }
+            
+            CGContextRef bitmapContext = CGBitmapContextCreate(
+                                                               (void*)data,
+                                                               _width,
+                                                               _height,
+                                                               8, // bitsPerComponent
+                                                               (size_t)_width * 4, // bytesPerRow (=stride)
+                                                               cs,
+                                                               kCGImageAlphaNoneSkipLast);
+            _cgImage = CGBitmapContextCreateImage(bitmapContext);
+            CGColorSpaceRelease(cs);
+            CFRelease(bitmapContext);
+        }
 		else
 		{
 			NSLog(@"Input file colorspace is not supported yet : %i", cs);

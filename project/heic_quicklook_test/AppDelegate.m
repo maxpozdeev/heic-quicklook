@@ -22,6 +22,7 @@
 @property (strong) CGWindowController * wcCG;
 
 @property (strong) oHEIF *heicFile;
+@property (strong) NSString *filepath;
 
 @end
 
@@ -68,6 +69,7 @@
 {
 	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
 	[self.window setTitleWithRepresentedFilename:filename];
+    self.filepath = filename;
 
     dispatch_async(dispatch_get_main_queue(), ^
    {
@@ -139,6 +141,10 @@
 			 }
 		 }
 	 }];
+}
+
+- (IBAction)reload:(id)sender {
+    [self doOpenFile:self.filepath];
 }
 
 @end

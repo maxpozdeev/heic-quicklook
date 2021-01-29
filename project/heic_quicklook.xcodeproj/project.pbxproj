@@ -110,6 +110,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43E18B4525C3862B006186E0 /* render-tests */ = {
+			isa = PBXGroup;
+			children = (
+				506693642226C58D00F9675F /* GLImageView.h */,
+				506693652226C58D00F9675F /* GLImageView.m */,
+				50283A532226B03400262946 /* GLWindowController.h */,
+				50283A542226B03400262946 /* GLWindowController.m */,
+				50283A562226B05300262946 /* GLWindow.xib */,
+				4367C3012222B0A3007FF78A /* ImageView.h */,
+				4367C3022222B0A3007FF78A /* ImageView.m */,
+				5028161D2226BCF50054B139 /* CGWindowController.h */,
+				5028161E2226BD000054B139 /* CGWindowController.m */,
+				502816202226BD0A0054B139 /* CGWindow.xib */,
+			);
+			name = "render-tests";
+			sourceTree = "<group>";
+		};
 		43EBC2CA2221ED2B001A4294 = {
 			isa = PBXGroup;
 			children = (
@@ -134,18 +151,9 @@
 		43EBC2D52221ED2B001A4294 /* heic_quicklook_test */ = {
 			isa = PBXGroup;
 			children = (
-				4367C3012222B0A3007FF78A /* ImageView.h */,
-				4367C3022222B0A3007FF78A /* ImageView.m */,
-				506693642226C58D00F9675F /* GLImageView.h */,
-				506693652226C58D00F9675F /* GLImageView.m */,
+				43E18B4525C3862B006186E0 /* render-tests */,
 				43EBC2D62221ED2B001A4294 /* AppDelegate.h */,
 				43EBC2D72221ED2B001A4294 /* AppDelegate.m */,
-				50283A532226B03400262946 /* GLWindowController.h */,
-				50283A542226B03400262946 /* GLWindowController.m */,
-				50283A562226B05300262946 /* GLWindow.xib */,
-				5028161D2226BCF50054B139 /* CGWindowController.h */,
-				5028161E2226BD000054B139 /* CGWindowController.m */,
-				502816202226BD0A0054B139 /* CGWindow.xib */,
 				43EBC2D92221ED2C001A4294 /* Assets.xcassets */,
 				43EBC2DE2221ED2C001A4294 /* Info.plist */,
 				509C15452225ABA700A601EA /* MainMenu.xib */,
@@ -480,6 +488,7 @@
 					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
 				);
 				INFOPLIST_FILE = heic_quicklook_test/Info.plist;
+				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs",

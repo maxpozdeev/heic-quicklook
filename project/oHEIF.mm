@@ -57,9 +57,9 @@
 		_width  = (size_t)imageHandle.get_width();
 		_height = (size_t)imageHandle.get_height();
 
-        // As of v1.10 libheif forces to convert colorspace from YUV to RGB (with heif_chroma_444).
-        // TODO: We cannot get raw decoded image without internal libheif color conversions.
-        //heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined);
+        // libheif forces to convert colorspace from YUV to RGB (with heif_chroma_444).
+        // TODO: Since v1.7 we cannot get raw decoded image without libheif internal color conversions.
+        //heif::Image image = imageHandle.decode_image(heif_colorspace_undefined, heif_chroma_undefined); //v1.4 or v1.6.2
         
 		heif::Image image = imageHandle.decode_image(heif_colorspace_RGB, heif_chroma_interleaved_RGBA);
 

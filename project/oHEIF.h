@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface oHEIF : NSObject
+@interface oHEIF : NSObject {
+    size_t _width;
+    size_t _height;
+    CGImageRef _cgImage;
+}
 
 @property (strong, readonly) NSString *path;
 @property (readonly) size_t width;

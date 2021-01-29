@@ -17,11 +17,11 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 {
 	@autoreleasepool {
 		
-		//NSLog(@"want thumb for %@, options %@, maxSize %@", url, options, NSStringFromSize(maxSize));
+		//NSLog(@"HEICAVIF: want thumb for %@, options %@, maxSize %@", url, options, NSStringFromSize(maxSize));
 		
-		NSInteger needScale = [[((__bridge NSDictionary*)options) objectForKey:@"QLThumbnailOptionScaleFactor"] integerValue];
+		float needScale = [[((__bridge NSDictionary*)options) objectForKey:@"QLThumbnailOptionScaleFactor"] floatValue];
 		CGSize needSize = maxSize;
-		if (needScale > 1) needSize = CGSizeMake(maxSize.width * needScale, maxSize.height * needScale);
+		if (needScale > 1.0) needSize = CGSizeMake(maxSize.width * needScale, maxSize.height * needScale);
 		
 		oHEIF *heicFile = [[oHEIF alloc] initWithFileAtPath:((__bridge NSURL*)url).path];
 		CGSize size = [heicFile sizeOfPrimaryImage];
@@ -53,18 +53,8 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 				CFRelease(newImageContext);
 			}
 			
-			NSDictionary *properties = @{ @"IconFlavor": @(5) }; //icon mode for images
-/*
-			CGRect showRect = CGRectMake(0, 0, CGImageGetWidth(imageToShow), CGImageGetHeight(imageToShow));
-			CGContextRef context = QLThumbnailRequestCreateContext(
-																   thumbnail,
-																   showRect.size,
-																   true,
-																   (__bridge CFDictionaryRef)properties
-																   );
-			CGContextDrawImage(context, showRect, imageToShow);
-			QLThumbnailRequestFlushContext(thumbnail, context);
-*/
+            // On catalina+ use "icon" as flavor key
+            NSDictionary *properties = @{ @"IconFlavor": @(5), @"icon": @(5) }; //icon mode for images 5
 	
 			QLThumbnailRequestSetImage(thumbnail, imageToShow, (__bridge CFDictionaryRef) properties);
 		}

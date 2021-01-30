@@ -4,6 +4,7 @@ rm -rf local
 rm -rf include
 rm -f libheif.dylib
 rm -rf libheif.dylib.dSYM
+rm -rf static
 mkdir local
 
 PREFIX="${PWD}/local"
@@ -55,6 +56,12 @@ install_name_tool -id @rpath/libheif.dylib libheif.dylib
 
 mkdir include
 cp -r local/include/libheif ./include/
+
+mkdir static
+cp local/lib/libde265.a static/
+cp local/lib/libdav1d.a static/
+cp local/lib/libheif.a static/
+
 
 #rm -rf local
 

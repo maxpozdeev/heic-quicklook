@@ -13,11 +13,13 @@
 		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
 		43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; };
 		43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		43E18B4825C4A5D8006186E0 /* oHEIF+TJ.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E18B4625C4A5D8006186E0 /* oHEIF+TJ.h */; };
 		43E18B4925C4A5D8006186E0 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
+		43F3D1D325C4D3F000873583 /* libdav1d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10F25C4D20500D2C69D /* libdav1d.a */; };
+		43F3D1D425C4D3F200873583 /* libde265.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A11025C4D20500D2C69D /* libde265.a */; };
+		43F3D1D525C4D3F500873583 /* libheif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10E25C4D20500D2C69D /* libheif.a */; };
 		5028161F2226BD000054B139 /* CGWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028161E2226BD000054B139 /* CGWindowController.m */; };
 		502816212226BD0A0054B139 /* CGWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502816202226BD0A0054B139 /* CGWindow.xib */; };
 		50283A552226B03400262946 /* GLWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50283A542226B03400262946 /* GLWindowController.m */; };
@@ -28,8 +30,6 @@
 		509C15572225B09C00A601EA /* GeneratePreviewForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 509C15562225B09C00A601EA /* GeneratePreviewForURL.m */; };
 		509C15592225B09C00A601EA /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 509C15582225B09C00A601EA /* main.c */; };
 		50B92F3A2225B56600A30E29 /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
-		50F2B15A2225B1F900F7CFB2 /* libheif.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; };
-		50F2B15C2225B29900F7CFB2 /* libheif.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,20 +45,12 @@
 			name = "Copy Libs";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		50F2B15B2225B28D00F7CFB2 /* Copy Libs */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				50F2B15C2225B29900F7CFB2 /* libheif.dylib in Copy Libs */,
-			);
-			name = "Copy Libs";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4304A10E25C4D20500D2C69D /* libheif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libheif.a; path = ../libs/static/libheif.a; sourceTree = "<group>"; };
+		4304A10F25C4D20500D2C69D /* libdav1d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdav1d.a; path = ../libs/static/libdav1d.a; sourceTree = "<group>"; };
+		4304A11025C4D20500D2C69D /* libde265.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libde265.a; path = ../libs/static/libde265.a; sourceTree = "<group>"; };
 		4367C2FA2221F8AE007FF78A /* libheif.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libheif.dylib; path = ../libs/libheif.dylib; sourceTree = SOURCE_ROOT; };
 		4367C2FE222201CE007FF78A /* oHEIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oHEIF.h; sourceTree = SOURCE_ROOT; };
 		4367C2FF222201CE007FF78A /* oHEIF.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = oHEIF.mm; sourceTree = SOURCE_ROOT; };
@@ -103,13 +95,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50F2B15A2225B1F900F7CFB2 /* libheif.dylib in Frameworks */,
+				43F3D1D425C4D3F200873583 /* libde265.a in Frameworks */,
+				43F3D1D325C4D3F000873583 /* libdav1d.a in Frameworks */,
+				43F3D1D525C4D3F500873583 /* libheif.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4304A10D25C4D20500D2C69D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4304A10F25C4D20500D2C69D /* libdav1d.a */,
+				4304A11025C4D20500D2C69D /* libde265.a */,
+				4304A10E25C4D20500D2C69D /* libheif.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		43E18B4525C3862B006186E0 /* render-tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +140,7 @@
 				43EBC2D42221ED2B001A4294 /* Products */,
 				4367C2FA2221F8AE007FF78A /* libheif.dylib */,
 				43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */,
+				4304A10D25C4D20500D2C69D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,7 +196,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43E18B4825C4A5D8006186E0 /* oHEIF+TJ.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +228,6 @@
 				509C154C2225B09C00A601EA /* Frameworks */,
 				509C154D2225B09C00A601EA /* Headers */,
 				509C154E2225B09C00A601EA /* Resources */,
-				50F2B15B2225B28D00F7CFB2 /* Copy Libs */,
 			);
 			buildRules = (
 			);
@@ -528,8 +531,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
-					"$(PROJECT_DIR)/../libs/libturbojpeg",
+					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -557,8 +559,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../libs",
-					"$(PROJECT_DIR)/../libs/libturbojpeg",
+					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pozdeev.heic-quicklook";

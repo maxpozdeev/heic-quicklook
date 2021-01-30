@@ -513,6 +513,7 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "../build/$(CONFIGURATION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -523,7 +524,6 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
@@ -534,6 +534,7 @@
 					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MARKETING_VERSION = 2.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pozdeev.heic-quicklook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -546,12 +547,12 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "../build/$(CONFIGURATION)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
@@ -562,6 +563,7 @@
 					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pozdeev.heic-quicklook";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = qlgenerator;

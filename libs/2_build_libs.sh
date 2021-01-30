@@ -12,6 +12,8 @@ PREFIX="${PWD}/local"
 FLAGS="-mmacosx-version-min=10.7 -stdlib=libc++"
 export MACOSX_DEPLOYMENT_TARGET=10.7
 export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
+# libheif links libjpeg and libpng with examples only
+#export PKG_CONFIG_LIBDIR=$PREFIX/lib/pkgconfig
 CORESCOUNT=4
 
 if [ "$1" == "debug" ]; then

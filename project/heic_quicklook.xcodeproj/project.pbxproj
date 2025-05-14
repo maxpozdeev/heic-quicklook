@@ -11,9 +11,6 @@
 		4367C2FD2221F8F7007FF78A /* libheif.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 4367C2FA2221F8AE007FF78A /* libheif.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4367C300222201CE007FF78A /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
 		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
-		43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; };
-		43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */ = {isa = PBXBuildFile; fileRef = 43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		43E18B4925C4A5D8006186E0 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
@@ -39,7 +36,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				43BF5717222B0E6700AFE042 /* libturbojpeg.dylib in Copy Libs */,
 				4367C2FD2221F8F7007FF78A /* libheif.dylib in Copy Libs */,
 			);
 			name = "Copy Libs";
@@ -87,7 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4367C2FB2221F8AE007FF78A /* libheif.dylib in Frameworks */,
-				43BF5716222B0E5A00AFE042 /* libturbojpeg.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +303,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4367C3032222B0A3007FF78A /* ImageView.m in Sources */,
-				43E18B4925C4A5D8006186E0 /* oHEIF+TJ.mm in Sources */,
 				5028161F2226BD000054B139 /* CGWindowController.m in Sources */,
 				4367C300222201CE007FF78A /* oHEIF.mm in Sources */,
 				43EBC2E02221ED2C001A4294 /* main.m in Sources */,

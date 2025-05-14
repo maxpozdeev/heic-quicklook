@@ -4,13 +4,13 @@
 # for dav1d we need: meson ninja nasm
 
 # libde265
-git clone --depth 1 --branch v1.0.8 https://github.com/strukturag/libde265.git libde265 || exit 1
+git clone --depth 1 --branch v1.0.16 https://github.com/strukturag/libde265.git libde265 || exit 1
 cd libde265
 ./autogen.sh || exit 1
 cd ..
 
 # libheif
-git clone --depth 1 --branch v1.10.0 https://github.com/strukturag/libheif.git libheif || exit 1
+git clone --depth 1 --branch v1.11.0 https://github.com/strukturag/libheif.git libheif || exit 1
 cd libheif
 ./autogen.sh || exit 1
 cd ..

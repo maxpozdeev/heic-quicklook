@@ -16,4 +16,4 @@ cd libheif
 cd ..
 
 # dav1d
-git clone --depth 1 --branch 0.8.1 https://github.com/videolan/dav1d.git libdav1d || exit 1
+git clone --depth 1 --branch 1.5.1 https://github.com/videolan/dav1d.git libdav1d || exit 1

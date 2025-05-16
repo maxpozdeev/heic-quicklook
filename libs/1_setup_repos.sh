@@ -10,7 +10,7 @@ cd libde265
 cd ..
 
 # libheif
-git clone --depth 1 --branch v1.18.2 https://github.com/strukturag/libheif.git libheif || exit 1
+git clone --depth 1 --branch v1.19.8 https://github.com/strukturag/libheif.git libheif || exit 1
 cd libheif
 #./autogen.sh || exit 1
 cd ..

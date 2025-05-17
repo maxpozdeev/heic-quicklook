@@ -6,7 +6,7 @@
 # libde265
 git clone --depth 1 --branch v1.0.16 https://github.com/strukturag/libde265.git libde265 || exit 1
 cd libde265
-./autogen.sh || exit 1
+#./autogen.sh || exit 1
 cd ..
 
 # libheif
@@ -17,3 +17,6 @@ cd ..
 
 # dav1d
 git clone --depth 1 --branch 1.5.1 https://github.com/videolan/dav1d.git libdav1d || exit 1
+
+# aom
+git clone --depth 1 --branch v3.12.1 https://aomedia.googlesource.com/aom

@@ -2,8 +2,6 @@
 
 rm -rf local
 rm -rf include
-#rm -f libheif.dylib
-#rm -rf libheif.dylib.dSYM
 rm -rf static
 mkdir local
 
@@ -27,12 +25,17 @@ fi
 
 # libde265
 cd libde265
-make clean > /dev/null
-# --disable-sse ?
-./configure --prefix="$PREFIX" --disable-shared --enable-static --disable-dec265 --disable-sherlock265 --disable-encoder CXXFLAGS="${FLAGS}" || exit 1
+rm -rf build
+mkdir build
+cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DBUILD_SHARED_LIBS=OFF \
+  -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
+  -DCMAKE_BUILD_TYPE=$CONFIGURATION \
+  -DENABLE_SDL=OFF -DENABLE_ENCODER=OFF -DENABLE_DECODER=OFF
 make -j$CORESCOUNT || exit 1
 make install
-cd ..
+cd ../..
+
 
 # dav1d
 cd libdav1d
@@ -44,6 +47,24 @@ cd build
 meson --prefix="$PREFIX" --default-library=static  .. || exit 1
 ninja install || exit 1
 cd ../..
+
+
+
+
+#aom
+cd aom
+rm -rf build.lib
+mkdir build.lib
+cd build.lib
+cmake .. -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DBUILD_SHARED_LIBS=OFF \
+  -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
+  -DCMAKE_BUILD_TYPE=$CONFIGURATION \
+  -DCONFIG_AV1_ENCODER=0 -DENABLE_DOCS=0 -DENABLE_EXAMPLES=0 -DENABLE_TESTDATA=0 -DENABLE_TESTS=0 -DENABLE_TOOLS=0
+make -j$CORESCOUNT || exit 1
+make install
+cd ../..
+
+
 
 
 # libheif
@@ -69,9 +90,6 @@ make install
 cd ../..
 
 
-#cp -L local/lib/libheif.dylib ./
-#install_name_tool -id @rpath/libheif.dylib libheif.dylib
-
 mkdir include
 cp -r local/include/libheif ./include/
 
@@ -79,11 +97,5 @@ mkdir static
 cp local/lib/libde265.a static/
 cp local/lib/libdav1d.a static/
 cp local/lib/libheif.a static/
+cp local/lib/libaom.a static/
 
-
-#rm -rf local
-
-#if [[ "$1" == "release" ]]; then
-#  dsymutil libheif.dylib -o libheif.dylib.dSYM
-#  strip -S libheif.dylib
-#fi

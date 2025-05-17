@@ -9,5 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 int main(int argc, const char * argv[]) {
+    putenv("LIBHEIF_SECURITY_LIMITS=OFF");
 	return NSApplicationMain(argc, argv);
 }

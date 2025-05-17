@@ -51,7 +51,7 @@
 	{
 		heif::Context ctx = heif::Context();
 		ctx.read_from_file( std::string(_path.UTF8String) );
-		
+       
 		heif::ImageHandle imageHandle = ctx.get_primary_image_handle();
 		_width  = (size_t)imageHandle.get_width();
 		_height = (size_t)imageHandle.get_height();

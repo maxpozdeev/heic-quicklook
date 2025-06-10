@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		4367C300222201CE007FF78A /* oHEIF.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4367C2FF222201CE007FF78A /* oHEIF.mm */; };
 		4367C3032222B0A3007FF78A /* ImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4367C3022222B0A3007FF78A /* ImageView.m */; };
-		436B35052DD50B2800D5ED14 /* libdav1d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10F25C4D20500D2C69D /* libdav1d.a */; };
 		436B35062DD50B2B00D5ED14 /* libde265.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A11025C4D20500D2C69D /* libde265.a */; };
 		436B35072DD50B2D00D5ED14 /* libheif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10E25C4D20500D2C69D /* libheif.a */; };
 		436B350B2DD9EEEB00D5ED14 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
 		436B350C2DD9EEEC00D5ED14 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
 		436B350E2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */; };
 		436B350F2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */; };
+		436B39F22DF8BE9700D1942A /* libaom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B39F12DF8BE9700D1942A /* libaom.a */; };
+		436B39F32DF8BE9700D1942A /* libaom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B39F12DF8BE9700D1942A /* libaom.a */; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
-		43F3D1D325C4D3F000873583 /* libdav1d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10F25C4D20500D2C69D /* libdav1d.a */; };
 		43F3D1D425C4D3F200873583 /* libde265.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A11025C4D20500D2C69D /* libde265.a */; };
 		43F3D1D525C4D3F500873583 /* libheif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10E25C4D20500D2C69D /* libheif.a */; };
 		5028161F2226BD000054B139 /* CGWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028161E2226BD000054B139 /* CGWindowController.m */; };
@@ -49,13 +49,13 @@
 
 /* Begin PBXFileReference section */
 		4304A10E25C4D20500D2C69D /* libheif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libheif.a; path = ../libs/static/libheif.a; sourceTree = "<group>"; };
-		4304A10F25C4D20500D2C69D /* libdav1d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdav1d.a; path = ../libs/static/libdav1d.a; sourceTree = "<group>"; };
 		4304A11025C4D20500D2C69D /* libde265.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libde265.a; path = ../libs/static/libde265.a; sourceTree = "<group>"; };
 		4367C2FE222201CE007FF78A /* oHEIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oHEIF.h; sourceTree = SOURCE_ROOT; };
 		4367C2FF222201CE007FF78A /* oHEIF.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = oHEIF.mm; sourceTree = SOURCE_ROOT; };
 		4367C3012222B0A3007FF78A /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		4367C3022222B0A3007FF78A /* ImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
 		436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libturbojpeg.a; path = ../libs/static/libturbojpeg.a; sourceTree = "<group>"; };
+		436B39F12DF8BE9700D1942A /* libaom.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libaom.a; path = ../libs/static/libaom.a; sourceTree = "<group>"; };
 		43E18B4625C4A5D8006186E0 /* oHEIF+TJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oHEIF+TJ.h"; sourceTree = "<group>"; };
 		43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "oHEIF+TJ.mm"; sourceTree = "<group>"; };
 		43EBC2D32221ED2B001A4294 /* heic_quicklook_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heic_quicklook_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,9 +86,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				436B35062DD50B2B00D5ED14 /* libde265.a in Frameworks */,
-				436B35052DD50B2800D5ED14 /* libdav1d.a in Frameworks */,
 				436B350E2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */,
 				436B35072DD50B2D00D5ED14 /* libheif.a in Frameworks */,
+				436B39F22DF8BE9700D1942A /* libaom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +97,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				43F3D1D425C4D3F200873583 /* libde265.a in Frameworks */,
-				43F3D1D325C4D3F000873583 /* libdav1d.a in Frameworks */,
 				436B350F2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */,
 				43F3D1D525C4D3F500873583 /* libheif.a in Frameworks */,
+				436B39F32DF8BE9700D1942A /* libaom.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,10 +109,10 @@
 		4304A10D25C4D20500D2C69D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4304A10F25C4D20500D2C69D /* libdav1d.a */,
 				4304A11025C4D20500D2C69D /* libde265.a */,
 				4304A10E25C4D20500D2C69D /* libheif.a */,
 				436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */,
+				436B39F12DF8BE9700D1942A /* libaom.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

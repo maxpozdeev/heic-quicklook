@@ -23,6 +23,18 @@ elif  [ "$1" == "release" ]; then
  CONFIGURATION="Release"
 fi
 
+# libjpeg-turbo
+cd libtj
+rm -rf build
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX="${PREFIX}" -DBUILD_SHARED_LIBS=OFF \
+  -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
+  -DCMAKE_BUILD_TYPE=$CONFIGURATION \
+  -DENABLE_STATIC=1 -DENABLE_SHARED=0 -DWITH_JAVA=0 -DWITH_ARITH_ENC=0
+make -j$CORESCOUNT || exit 1
+make install
+cd ../..
+
 # libde265
 cd libde265
 rm -rf build
@@ -44,7 +56,8 @@ rm -rf build
 mkdir build
 cd build
 # dav1d by default uses --buildtype=release
-meson --prefix="$PREFIX" --default-library=static  .. || exit 1
+meson setup --prefix="$PREFIX" --default-library=static -Denable_tools=false -Denable_tests=false  .. || exit 1
+ninja
 ninja install || exit 1
 cd ../..
 
@@ -96,6 +109,7 @@ cp -r local/include/libheif ./include/
 mkdir static
 cp local/lib/libde265.a static/
 cp local/lib/libdav1d.a static/
+cp local/lib/libturbojpeg.a static/
 cp local/lib/libheif.a static/
 cp local/lib/libaom.a static/
 

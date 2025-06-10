@@ -12,6 +12,10 @@
 		436B35052DD50B2800D5ED14 /* libdav1d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10F25C4D20500D2C69D /* libdav1d.a */; };
 		436B35062DD50B2B00D5ED14 /* libde265.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A11025C4D20500D2C69D /* libde265.a */; };
 		436B35072DD50B2D00D5ED14 /* libheif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4304A10E25C4D20500D2C69D /* libheif.a */; };
+		436B350B2DD9EEEB00D5ED14 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
+		436B350C2DD9EEEC00D5ED14 /* oHEIF+TJ.mm in Sources */ = {isa = PBXBuildFile; fileRef = 43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */; };
+		436B350E2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */; };
+		436B350F2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */; };
 		43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2D72221ED2B001A4294 /* AppDelegate.m */; };
 		43EBC2DA2221ED2C001A4294 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EBC2D92221ED2C001A4294 /* Assets.xcassets */; };
 		43EBC2E02221ED2C001A4294 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EBC2DF2221ED2C001A4294 /* main.m */; };
@@ -51,7 +55,7 @@
 		4367C2FF222201CE007FF78A /* oHEIF.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = oHEIF.mm; sourceTree = SOURCE_ROOT; };
 		4367C3012222B0A3007FF78A /* ImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageView.h; sourceTree = "<group>"; };
 		4367C3022222B0A3007FF78A /* ImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageView.m; sourceTree = "<group>"; };
-		43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libturbojpeg.dylib; path = ../libs/libturbojpeg/libturbojpeg.dylib; sourceTree = "<group>"; };
+		436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libturbojpeg.a; path = ../libs/static/libturbojpeg.a; sourceTree = "<group>"; };
 		43E18B4625C4A5D8006186E0 /* oHEIF+TJ.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oHEIF+TJ.h"; sourceTree = "<group>"; };
 		43E18B4725C4A5D8006186E0 /* oHEIF+TJ.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "oHEIF+TJ.mm"; sourceTree = "<group>"; };
 		43EBC2D32221ED2B001A4294 /* heic_quicklook_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heic_quicklook_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +87,7 @@
 			files = (
 				436B35062DD50B2B00D5ED14 /* libde265.a in Frameworks */,
 				436B35052DD50B2800D5ED14 /* libdav1d.a in Frameworks */,
+				436B350E2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */,
 				436B35072DD50B2D00D5ED14 /* libheif.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +98,7 @@
 			files = (
 				43F3D1D425C4D3F200873583 /* libde265.a in Frameworks */,
 				43F3D1D325C4D3F000873583 /* libdav1d.a in Frameworks */,
+				436B350F2DD9EF2900D5ED14 /* libturbojpeg.a in Frameworks */,
 				43F3D1D525C4D3F500873583 /* libheif.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +112,7 @@
 				4304A10F25C4D20500D2C69D /* libdav1d.a */,
 				4304A11025C4D20500D2C69D /* libde265.a */,
 				4304A10E25C4D20500D2C69D /* libheif.a */,
+				436B350D2DD9EF2900D5ED14 /* libturbojpeg.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,7 +141,6 @@
 				43EBC2D52221ED2B001A4294 /* heic_quicklook_test */,
 				509C15512225B09C00A601EA /* heic-quicklook */,
 				43EBC2D42221ED2B001A4294 /* Products */,
-				43BF5715222B0E5A00AFE042 /* libturbojpeg.dylib */,
 				4304A10D25C4D20500D2C69D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 				43EBC2D82221ED2B001A4294 /* AppDelegate.m in Sources */,
 				50283A552226B03400262946 /* GLWindowController.m in Sources */,
 				506693662226C58D00F9675F /* GLImageView.m in Sources */,
+				436B350B2DD9EEEB00D5ED14 /* oHEIF+TJ.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +325,7 @@
 			files = (
 				509C15552225B09C00A601EA /* GenerateThumbnailForURL.m in Sources */,
 				509C15572225B09C00A601EA /* GeneratePreviewForURL.m in Sources */,
+				436B350C2DD9EEEC00D5ED14 /* oHEIF+TJ.mm in Sources */,
 				509C15592225B09C00A601EA /* main.c in Sources */,
 				50B92F3A2225B56600A30E29 /* oHEIF.mm in Sources */,
 			);
@@ -460,14 +468,13 @@
 				DSTROOT = "../build/$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
+					"$(PROJECT_DIR)/../libs/local/include",
 				);
 				INFOPLIST_FILE = heic_quicklook_test/Info.plist;
 				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs",
-					"$(PROJECT_DIR)/../libs/libturbojpeg",
 					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -487,14 +494,13 @@
 				DSTROOT = "../build/$(CONFIGURATION)";
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(PROJECT_DIR)/../libs/libturbojpeg/include",
+					"$(PROJECT_DIR)/../libs/local/include",
 				);
 				INFOPLIST_FILE = heic_quicklook_test/Info.plist;
 				INSTALL_PATH = /;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs",
-					"$(PROJECT_DIR)/../libs/libturbojpeg",
 					"$(PROJECT_DIR)/../libs/static",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -507,6 +513,7 @@
 		509C155B2225B09C00A601EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -520,7 +527,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(inherited)",
+					"$(PROJECT_DIR)/../libs/local/include",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
 				INSTALL_PATH = /;
@@ -541,6 +548,7 @@
 		509C155C2225B09C00A601EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = x86_64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 2;
@@ -549,7 +557,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/../libs/include",
-					"$(inherited)",
+					"$(PROJECT_DIR)/../libs/local/include",
 				);
 				INFOPLIST_FILE = "heic-quicklook/Info.plist";
 				INSTALL_PATH = /;

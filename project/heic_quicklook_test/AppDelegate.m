@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "oHEIF.h"
+#import "oHEIF+TJ.h"
 #import "GLWindowController.h"
 #import "CGWindowController.h"
 
@@ -72,11 +73,12 @@
     self.filepath = filename;
 
     dispatch_async(dispatch_get_main_queue(), ^
-   {
+    {
 	   NSDate *methodStart = [NSDate date];
 	   
 	   self.heicFile = [[oHEIF alloc] initWithFileAtPath:filename];
-	   if ([self.heicFile decodePrimaryImage])
+	   //if ([self.heicFile decodePrimaryImage])
+       if ([self.heicFile decodePrimaryImageWithTJ])
 	   //if ([self.heicFile decodePrimaryImageAndLog])
 	   {
 		   NSDate *methodFinish = [NSDate date];
@@ -94,7 +96,7 @@
                                      self.heicFile.path.lastPathComponent, self.heicFile.width, self.heicFile.height, libError];
 	   }
 	   
-   });
+    });
 }
 
 - (IBAction)showGLWindow:(id)sender

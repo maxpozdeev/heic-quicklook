@@ -10,7 +10,7 @@ git clone --depth 1 --branch v1.0.16 https://github.com/strukturag/libde265.git 
 git clone --depth 1 --branch v1.19.8 https://github.com/strukturag/libheif.git libheif || exit 1
 
 # dav1d
-git clone --depth 1 --branch 1.5.1 https://github.com/videolan/dav1d.git libdav1d || exit 1
+#git clone --depth 1 --branch 1.5.1 https://github.com/videolan/dav1d.git libdav1d || exit 1
 
 # turbo-jpeg
 git clone --depth 1 --branch 3.1.0 https://github.com/libjpeg-turbo/libjpeg-turbo.git libtj || exit 1

@@ -120,7 +120,7 @@ do
 done
 
 
-# Copy static libs to static
+# Copy static libs and make universal
 mkdir static
 for Lib in libde265.a libturbojpeg.a libjpeg.a libheif.a libaom.a;
 do

@@ -49,12 +49,12 @@
     [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
     [self.window setTitleWithRepresentedFilename:filename];
     
-    NSString *fileExt = filename.pathExtension.lowercaseString;
-    if (![fileExt isEqualToString:@"heic"] )
-    {
-        self.label.stringValue = [NSString stringWithFormat:@"%@ | Not a HEIC file", filename.lastPathComponent];
-        return;
-    }
+//    NSString *fileExt = filename.pathExtension.lowercaseString;
+//    if (![fileExt isEqualToString:@"heic"] )
+//    {
+//        self.label.stringValue = [NSString stringWithFormat:@"%@ | Not a HEIC file", filename.lastPathComponent];
+//        return;
+//    }
     
     dispatch_async(dispatch_get_main_queue(), ^
        {

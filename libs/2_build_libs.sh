@@ -6,13 +6,19 @@ rm -rf static
 mkdir local
 
 PREFIX="${PWD}/local"
-#FLAGS="-mmacosx-version-min=10.7 -stdlib=libc++"
 export MACOSX_DEPLOYMENT_TARGET=10.7
-#export PKG_CONFIG_PATH=$PREFIX/lib/pkgconfig
 #CORESCOUNT=4
 CORESCOUNT=`sysctl -n hw.perflevel0.logicalcpu` || exit 1
 
-Archs="x86_64 arm64"
+if [ -z "$Archs" ]; then
+  if [ "$(arch)" = "i386" ]; then
+    echo "# If you need to compile for arm64, run as: Archs='x86_64 arm64' $0"
+    Archs="x86_64"
+  else
+    Archs="x86_64 arm64"
+  fi
+fi
+echo "# Build archs: $Archs"
 
 CONFIGURATION="RelWithDebInfo"
 if [ "$1" == "debug" ]; then
@@ -36,6 +42,7 @@ Build_All() {
   rm -rf build
   mkdir build && cd build
   cmake ../ -DCMAKE_INSTALL_PREFIX="${PREFIX_ARCH}" -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="$Arch" \
     -DENABLE_STATIC=1 -DENABLE_SHARED=0 -DWITH_JAVA=0 -DWITH_ARITH_ENC=0 -DWITH_JPEG8=1
@@ -49,6 +56,7 @@ Build_All() {
   mkdir build
   cd build
   cmake ../ -DCMAKE_INSTALL_PREFIX="${PREFIX_ARCH}" -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="$Arch" \
     -DENABLE_SDL=OFF -DENABLE_ENCODER=OFF -DENABLE_DECODER=OFF
@@ -75,6 +83,7 @@ Build_All() {
   mkdir build.lib
   cd build.lib
   cmake .. -DCMAKE_INSTALL_PREFIX="${PREFIX_ARCH}" -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
     -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=../build/cmake/toolchains/${Arch}-macos.cmake \
     -DCONFIG_AV1_ENCODER=0 -DENABLE_DOCS=0 -DENABLE_EXAMPLES=0 -DENABLE_TESTDATA=0 -DENABLE_TESTS=0 -DENABLE_TOOLS=0 || exit 1
@@ -89,6 +98,7 @@ Build_All() {
   mkdir build
   cd build
   cmake ../ -LA -DCMAKE_INSTALL_PREFIX="${PREFIX_ARCH}" -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=${MACOSX_DEPLOYMENT_TARGET} \
     -DCMAKE_BUILD_TYPE=$CONFIGURATION -DCMAKE_OSX_ARCHITECTURES="$Arch" \
     -DENABLE_PLUGIN_LOADING=OFF -DWITH_REDUCED_VISIBILITY=OFF \

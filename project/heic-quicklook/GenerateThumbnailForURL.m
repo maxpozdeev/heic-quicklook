@@ -3,6 +3,7 @@
 #include <QuickLook/QuickLook.h>
 
 #import "oHEIF.h"
+#import "oHEIF+TJ.h"
 
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize);
 void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbnail);
@@ -31,7 +32,7 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 		}
 		
 		
-		BOOL decoded = [heicFile decodePrimaryImage];
+		BOOL decoded = [heicFile decodePrimaryImageWithTJ];
 		if (decoded)
 		{
 			if (QLThumbnailRequestIsCancelled(thumbnail)) {

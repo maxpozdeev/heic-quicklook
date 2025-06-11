@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "oHEIF.h"
+#import "oHEIF+TJ.h"
 
 
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options);
@@ -29,7 +30,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 		NSDictionary *properties = @{ };
         CGContextRef context = QLPreviewRequestCreateContext(preview, size, true, (__bridge CFDictionaryRef)properties);
 		
-		BOOL decoded = [heicFile decodePrimaryImage];
+		BOOL decoded = [heicFile decodePrimaryImageWithTJ];
 		if (decoded)
         {
             if (QLPreviewRequestIsCancelled(preview)) {
